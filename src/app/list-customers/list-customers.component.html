@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="listEleve">
+        <p>Liste des customers :</p>
+    </div>
+    <div class="kt-portlet__head-toolbar">
+        <div class="kt-portlet__head-wrapper">
+            <div class="kt-portlet__head-actions">
+                <a
+                    href="javascript:; "
+                    (click)="add()"
+                    class="btn btn-outline-success btn-elevate btn-icon-sm"
+                >
+                    Ajouter
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="kt-portlet__head-toolbar" *ngIf="this.authService.isAuthenticated==true">
+        <div class="kt-portlet__head-wrapper">
+            <div>
+                {{this.authService.username}}
+            </div>
+            <div class="kt-portlet__head-actions">
+                <a 
+                    href="javascript:; "
+                    (click)="handleLogOut()"
+                    class="btn btn-outline-success btn-elevate btn-icon-sm"
+                >
+                    LogOut
+                </a>
+            </div>
+        </div>
+    </div>
+    
+
+    <table mat-table [dataSource]="customers" class="mat-elevation-z8">
+        <ng-container matColumnDef="Id">
+          <th mat-header-cell *matHeaderCellDef>No.</th>
+          <td mat-cell *matCellDef="let element">{{element.id}}</td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let element">{{element.name}}</td>
+        </ng-container>
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef>Email</th>
+          <td mat-cell *matCellDef="let element">{{element.email}}</td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let row" class="actionsBtn action">
+            <button
+                type="button"
+                class="btn btn-sm btn-clean btn-icon btn-success btn-icon-md btn_table_show"
+                (click)="Details(row.id)"
+            >
+                <i class="icon la la-search-plus"></i>
+            </button>
+            <button
+                type="button"
+                class="btn btn-sm btn-clean btn-icon btn-warning btn-icon-md btn_table_edit"
+                (click)="Modifier(row.id)"
+            >
+                <i class="icon la la-edit"></i>
+            </button>
+            <!-- <button type="button" (click)="delete(row.id)"
+                class="btn btn-sm btn-clean btn-icon btn-danger btn-icon-md btn_table_delete"
+                ><i class="icon la la-trash"></i></button> -->
+        </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+
+</body>
+</html>

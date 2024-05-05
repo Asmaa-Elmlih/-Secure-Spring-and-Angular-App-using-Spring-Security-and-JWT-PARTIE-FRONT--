@@ -1,0 +1,17 @@
+<!-- login.component.html -->
+<form class="login-form"  [formGroup]="formLogin" (ngSubmit)="handleLogin()">
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field>
+      <input matInput placeholder="Username" name="username" formControlName="username"  required>
+    </mat-form-field>
+        </div>
+        <div class="col-md-6">
+           <mat-form-field>
+      <input matInput type="password" placeholder="Password" name="password" formControlName="password" required>
+    </mat-form-field> 
+        </div>
+    </div>
+    <button mat-raised-button color="primary" type="submit" >Login</button>
+  </form>
+  
